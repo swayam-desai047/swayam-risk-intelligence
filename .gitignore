@@ -1,0 +1,28 @@
+# Virtual Environments
+venv/
+.env
+__pycache__/
+*.pyc
+
+# Datasets & Large Binaries
+ml_pipeline/data/
+*.pkl
+*.json
+!ml_pipeline/saved_models/*.pkl
+!ml_pipeline/saved_models/*.json
+
+# Node & Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Database files
+backend/app/risk_platform.db
+*.db
+*.log
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

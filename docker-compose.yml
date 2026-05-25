@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: infra/Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - JWT_SECRET=super-secret-risk-intelligence-key-9988776655
+      - DATABASE_URL=sqlite:////app/backend/risk_platform.db
+    volumes:
+      # Mount backend database and saved models so model checkpoints persist across runs
+      - ./backend:/app/backend
+      - ./ml_pipeline/saved_models:/app/ml_pipeline/saved_models
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
