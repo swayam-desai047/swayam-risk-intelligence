@@ -10,7 +10,6 @@ services:
     env: docker
     dockerfilePath: infra/Dockerfile.backend
     plan: free
-    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
     envVars:
       - key: PORT
         value: 8000
